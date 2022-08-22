@@ -1,0 +1,38 @@
+﻿body {
+}
+
+h2.page-title {
+    background: #ebebeb;
+    padding: 15px;
+    margin-top: 0;
+    font-weight: 300;
+    text-align: left;
+    padding-left: 23px;
+    font-size: 28px;
+    margin-bottom: 35px;
+    color: #818181;
+    border-radius: 0 0px 20px 20px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.order-menu, .navbar-inverse .navbar-nav > li > a.order-menu {
+    background: red;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 4px;
+    margin-left: 20px;
+}
+
+#btnSubmit, .btnSubmit {
+    display: block;
+    float: none;
+    max-width: none;
+    width: 100%;
+    font-size: 18px;
+    padding: 13px;
+}

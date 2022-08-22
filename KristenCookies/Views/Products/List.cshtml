@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+<h2 class="page-title">Products</h2>
+
+
+<a href="/Products/Add" class="btn btn-primary">Add Product</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Products product in ViewBag.Products)
+        {
+           
+        <tr>
+            <td>@product.Description</td>
+            <td scope="row">@product.IdWeb</td>
+        </tr>
+
+        }
+    </tbody>
+</table>

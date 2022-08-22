@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Clients";
+}
+
+<h2 class="page-title">Clients</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Created Date</th>
+            <th scope="col">Client</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Clients client in ViewBag.Clients)
+        {
+            <tr>
+                <td>@client.Id</td>
+                <td>@client.CreationDate</td>
+                <td>@client.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

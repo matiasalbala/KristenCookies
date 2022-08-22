@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<h2 class="page-title">Admin Panel</h2>
+
+@if (!(bool)Session["IsAdmin"])
+{
+    <form action="/Home/Login" method="post">
+        <div class="form-group">
+            <label for="inputUsername">Username</label>
+            <input type="text" class="form-control" id="inputUsername" name="inputUsername" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+            <label for="inputPass">Password</label>
+            <input type="password" class="form-control" id="inputPass" name="inputPass" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">LOGIN</button>
+    </form>
+
+}
+else
+{
+    <a href="/Home/Logout">Logout</a>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <h3>REPORTS</h3>
+            <a href="/Order/Report" class="btn btn-primary btnSubmit">VIEW REPORT</a>
+        </div>
+
+        <div class="col-md-12">
+            <h3>ORDERS</h3>
+            <a href="/Order/List" class="btn btn-primary btnSubmit">VIEW PENDING AND FINISHED ORDERS</a>
+            <a href="/Order/Index" class="btn btn-primary btnSubmit">ADD NEW ORDER</a>
+        </div>
+
+        <div class="col-md-12">
+            <h3>COOKIES/PRODUCTS</h3>
+            <a href="/Products/Add" class="btn btn-primary btnSubmit">ADD NEW COOKIE</a>
+            <a href="/Products/List" class="btn btn-primary btnSubmit">VIEW PRODUCTS</a>
+        </div>
+
+        <div class="col-md-12">
+            <h3>CLIENTS</h3>
+            <a href="/Clients/Index" class="btn btn-primary btnSubmit">VIEW CLIENTS</a>
+        </div>
+
+    </div>
+}

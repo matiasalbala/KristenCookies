@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+}
+
+<h2 class="page-title">Orders</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Created Date</th>
+            <th scope="col">Client</th>
+            <th scope="col">Completed Date</th>
+            <th scope="col">Details</th>
+            <th scope="col">Count of cookies</th>
+            <th scope="col">Order State</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Orders order in ViewBag.Orders)
+        {
+        <tr>
+            <td>@order.Id</td>
+            <td>@order.CreatedDate</td>
+            <td>@order.Clients.Email</td>
+            <td>@order.CompletedDate</td>
+            <td>
+                @foreach (OrdersDetails item in order.OrdersDetails)
+                {
+                    <ul>
+                        <li>@(item.count + " - " + item.Products.Description)</li>
+                    </ul>
+                }
+        </td>
+        <td>@order.OrdersDetails.Sum(x => x.count)</td>
+        <td>@(order.IdState==1?"PENDING":"COMPLETED")</td>
+        <td>
+            @if (order.IdState == 1) { 
+            <a href="/Order/Complete?order=@order.Id" class="btn btn-primary">Mark as Completed</a>
+            }
+        </td>
+        </tr>
+        }
+    </tbody>
+</table>

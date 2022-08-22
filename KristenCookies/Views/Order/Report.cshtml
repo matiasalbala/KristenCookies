@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2 class="page-title">Report</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@ViewBag.numberOfOrders</h2>
+        <p>
+            Number of orders for the current week.
+        </p>
+        <p><a class="btn btn-default" href="/Order/List">View more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>@ViewBag.mostPopularCookie</h2>
+        <p>Is the most popular mix–ins</p>
+        <p><a class="btn btn-default" href="/Order/List">View more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>@ViewBag.mostPopularHour</h2>
+        <p>Is the most popular hours of the week for business</p>
+        <p><a class="btn btn-default" href="/Order/List">View more &raquo;</a></p>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<h2 class="page-title">Add new Order</h2>
+
+<form method="post">
+
+    <h3>1) Complete your email</h3>
+    <div style="padding-bottom:30px;" class="mb-3">
+        <label for="clientEmail" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="clientEmail" name="clientEmail" aria-describedby="emailHelp">
+    </div>
+
+    <h3>2) Select your cookies</h3>
+    <p>Cannot offer partial dozens of cookies</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Products product in ViewBag.Products)
+            {
+                <tr>
+                    <td>@product.Description</td>
+                    <td><input type="number" class="cookie" data-idweb="@product.IdWeb" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="button" id="btnSubmit" class="btn btn-primary">I'M DONE! FINISH AND PLACE MY ORDER</button>
+</form>
+
+
+<div id="loading-screen" class="loading">
+    <span class="txt">LOADING ORDER...</span>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#btnSubmit').click(function (e) {
+                var _orderList = [];
+                var _orderCount = 0;
+                var _clientEmail = $.trim($("#clientEmail").val());
+
+                if (_clientEmail == "") {
+                    alert("Pleace complete your email");
+                    return;
+                }
+
+                $(".cookie").each(function (index) {
+                    var _count = $.trim($(this).val()) != '' ? parseInt($.trim($(this).val())):0;
+
+                    if (_count > 0) {
+                        _orderCount += _count;
+
+                        _orderList.push({
+                            "idweb": $(this).data("idweb"),
+                            "count": _count
+                        });
+                    }
+                });
+
+                if (_orderCount % 12 != 0) {
+                    alert("Cannot offer partial dozens of cookies");
+                    return;
+                }
+                                
+                $("#loading-screen").show();
+
+                e.preventDefault();
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '/Order/Add',
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            "clientEmail": _clientEmail,
+                            "cookies": _orderList
+                        }),
+                        success: function (data) {
+                            $("#loading-screen").hide();
+                            $(".cookie, #clientEmail").val("");
+                            alert("Your order was placed! Thanks!");
+                        },
+                        error: function (e) {
+                            $("#loading-screen").hide();
+                            alert("Something was wrong when we try to place your order, pleace try again");
+                        }
+                    });
+            });
+        });
+
+
+    </script>
+
+}

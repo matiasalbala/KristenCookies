@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Add Product";
+}
+
+<h2 class="page-title">Add Product</h2>
+
+<form method="post" action="~/Products/AddProduct">
+    <div class="mb-3">
+        <label for="productDescription" class="form-label">Product Description:</label>
+        <input type="text" class="form-control" id="productDescription" name="productDescription" aria-describedby="productDescription">
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top:10px;">Add Product</button>
+</form>
+
